@@ -1,0 +1,20 @@
+@import './base.css';
+@import 'element-plus/dist/index.css';
+@import 'plus-pro-components/index.css';
+@import 'element-plus/theme-chalk/dark/css-vars.css';
+
+body {
+  margin: 0;
+}
+
+#app {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+/* 本项目的tailwindcss@4会使该class不可见 */
+.collapse {
+  visibility: inherit;
+}
