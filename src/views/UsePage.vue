@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ElButton } from 'element-plus';
+
 import { PlusPage, PlusSearch, type PageInfo, type PlusColumn, type PlusPageInstance, type RecordType } from 'plus-pro-components';
 import { ref, unref, useTemplateRef } from 'vue';
 
-const request = async (params: Partial<PageInfo> & RecordType) => {
+const requestWrapper = async (params: Partial<PageInfo> & RecordType) => {
   console.log(params)
   return {
     data: [],
@@ -18,6 +18,9 @@ const commonCol: PlusColumn[] = [
   { label: 'address', prop: 'address' },
 ]
 
+/**
+ * search block
+ */
 const pageRef = useTemplateRef<PlusPageInstance>('pageRef')
 const tempSearch = ref({})
 function handleSearch(params: Partial<PageInfo> & RecordType) {
@@ -29,13 +32,9 @@ function handleSearch(params: Partial<PageInfo> & RecordType) {
   <PlusSearch :columns="[
     { label: 'param', prop: 'param' },
   ]" @search="handleSearch" />
-  <PlusPage :columns="commonCol" :search="false" ref="pageRef" :params="tempSearch" :table="{ toolbar: false }"
-    :request="request">
-    <template #table-title>
-      <ElButton>plus</ElButton>
-    </template>
-    <template #table-toolbar>
-      <ElButton>download</ElButton>
-    </template>
+
+  <PlusPage :columns="commonCol" :is-card="false" :search="false" ref="pageRef" :params="tempSearch"
+    :table="{ titleBar: false }" :request="requestWrapper">
+
   </PlusPage>
 </template>
