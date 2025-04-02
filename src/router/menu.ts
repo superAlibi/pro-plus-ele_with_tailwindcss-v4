@@ -4,7 +4,7 @@ import DefaultLayout from '../layouts/default.vue'
 import type { AsyncComponentLoader } from 'vue'
 
 const pageModules = import.meta.glob<AsyncComponentLoader>('../views/**/*.vue')
-const formatedKeyPageModules = Object.fromEntries(
+const formattedKeyPageModules = Object.fromEntries(
   Object.entries(pageModules).map(([key, value]) => {
     return [key.replace('../views/', ''), value]
   })
@@ -13,7 +13,7 @@ export const menus: PlusRouteRecordRaw[] = [
   {
     name: 'Home',
     path: '/',
-    component: formatedKeyPageModules['HomeView.vue'],
+    component: formattedKeyPageModules['HomeView.vue'],
     meta: {
       title: 'Home',
       icon: HomeFilled,
@@ -22,9 +22,18 @@ export const menus: PlusRouteRecordRaw[] = [
   {
     name: 'About',
     path: '/about',
-    component: formatedKeyPageModules['AboutView.vue'],
+    component: formattedKeyPageModules['AboutView.vue'],
     meta: {
       title: 'About',
+      icon: HomeFilled,
+    },
+  },
+  {
+    name: 'UsePage',
+    path: '/use-page',
+    component: formattedKeyPageModules['UsePage.vue'],
+    meta: {
+      title: 'UsePage',
       icon: HomeFilled,
     },
   },
